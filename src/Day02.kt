@@ -36,9 +36,7 @@ fun main() {
                 val (l, w, h) = line.split("x").map { it.toInt() }
                 return@map Present(l, w, h)
             }
-            .sumOf {
-                it.surface + it.minSide
-            }
+            .sumOf { it.surface + it.minSide }
     }
 
     /*
