@@ -67,3 +67,24 @@ class Matrix<T : Any?>(
 fun Matrix<Int>.sum(): Int {
     return sumOf { it }
 }
+
+fun <T : Any?> List<T>.permutations(): List<List<T>> {
+    if (isEmpty()) {
+        return emptyList()
+    }
+
+    if (size == 1) {
+        return listOf(this)
+    }
+
+    return indices.asSequence()
+        .flatMap { index ->
+            val element = elementAt(index)
+            val listWithoutElement = subList(0, index) + subList(index + 1, size)
+
+            listWithoutElement.permutations()
+                .asSequence()
+                .map { it + element }
+        }
+        .toList()
+}
